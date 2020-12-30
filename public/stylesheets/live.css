@@ -75,6 +75,7 @@ body {
 
 #sequence-next {
     opacity: 40%;
+    font-size: 35px;
 }
 
 @keyframes countdown {
