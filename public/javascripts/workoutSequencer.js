@@ -1,5 +1,5 @@
 function WorkoutSequencer(battery) {
-    this.battery = battery;
+    this.battery = battery || [];
     this.currentIdx = 0;
 }
 
