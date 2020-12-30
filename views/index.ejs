@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/countDownTimer.js'></script>
+    <script src='/javascripts/workoutSequencer.js'></script>
+    <script src='/javascripts/main.js'></script>
+</head>
+
+<body>
+    <div id='countdown'>
+        <svg id='countdown-svg'>
+            <circle class='countdown-circle' id='countdown-circle-bg' r='87' cx='100' cy='100'></circle>
+            <circle class='countdown-circle' id='countdown-circle-fg' r='87' cx='100' cy='100'></circle>
+            <circle class='outline-circle' id='outline-circle' r='76' cx='100' cy='100'></circle>
+        </svg>
+        <div id='countdown-number'></div>
+    </div>
+
+    <div id='sequence'>
+        <div class='sequence-group' id='sequence-now'>
+            <div class='sequence-label' id='sequence-label-now'>now</div>
+            <div class='sequence-value' id='sequence-value-now'>&nbsp;</div>
+        </div>
+        <div class='sequence-group' id='sequence-next'>
+            <div class='sequence-label' id='sequence-label-next'>next</div>
+            <div class='sequence-value' id='sequence-value-next'>&nbsp;</div>
+        </div>
+    </div>
+
+    <!-- Debug -->
+    <div>
+        <button class='vertical-center' id='go-button' onclick='testButtonGo()'>GO</button>
+    </div>
+</body>
+
+</html>
