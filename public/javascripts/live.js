@@ -140,3 +140,10 @@ function resetCircleAnimation(seconds) {
 function testButtonGo() {
     cdt.start();
 }
+
+function testButtonPrev() {
+}
+
+function testButtonNext() {
+    
+}
