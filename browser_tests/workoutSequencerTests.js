@@ -439,7 +439,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         }],
         repeat: 2
     }];
-    describe('One block, one exercises, two repeats', function () {
+    describe('Full exercise battery', function () {
         var seq = new WorkoutSequencer(fullExerciseBattery);
         it('should be on block 1, repeat 1/2, exercise 1-1, repeat 1/2', function () {
             assert.equal(seq.current().exercise, 'test exercise 1-1');
@@ -571,6 +571,86 @@ describe('workoutSequencer - blocks and repeats', function () {
             seq.iterate();
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
+        });
+    });
+});
+
+describe('workoutSequencer - default durations', function () {
+    const oneBlockNoDefaultDuration = [{
+        block: 'test block',
+        set: [{
+            exercise: 'test exercise 1',
+            duration: 10,
+        }, {
+            exercise: 'test exercise 2',
+            duration: 20,
+        }]
+    }];
+    describe('One block, no default duration', function () {
+        var seq = new WorkoutSequencer(oneBlockNoDefaultDuration);
+        it('should have custom durations', function () {
+            assert.equal(seq.current().duration, 10);
+            assert.equal(seq.next().duration, 20);
+        });
+    });
+
+    const oneBlockDefaultDuration = [{
+        block: 'test block',
+        defaultDuration: 30,
+        set: [{
+            exercise: 'test exercise 1'
+        }, {
+            exercise: 'test exercise 2'
+        }]
+    }];
+    describe('One block, with default duration', function () {
+        var seq = new WorkoutSequencer(oneBlockDefaultDuration);
+        it('should have duration 30 for current', function () {
+            assert.equal(seq.current().duration, 30);
+        });
+        it('should have duration 30 for next', function () {
+            assert.equal(seq.next().duration, 30);
+        });
+    });
+
+    const oneBlockCustomDurations = [{
+        block: 'test block',
+        defaultDuration: 30,
+        set: [{
+            exercise: 'test exercise 1',
+            duration: 10
+        }, {
+            exercise: 'test exercise 2'
+        }]
+    }];
+    describe('One block, with default duration and 1 custom durations', function () {
+        var seq = new WorkoutSequencer(oneBlockCustomDurations);
+        it('should have duration 10 for current', function () {
+            assert.equal(seq.current().duration, 10);
+        });
+        it('should have duration 30 for next', function () {
+            assert.equal(seq.next().duration, 30);
+        });
+    });
+
+    const oneBlockOnlyCustomDurations = [{
+        block: 'test block',
+        defaultDuration: 30,
+        set: [{
+            exercise: 'test exercise 1',
+            duration: 10
+        }, {
+            exercise: 'test exercise 2',
+            duration: 20
+        }]
+    }];
+    describe('One block, with default duration, and 2 custom durations', function () {
+        var seq = new WorkoutSequencer(oneBlockOnlyCustomDurations);
+        it('should have duration 10 for current', function () {
+            assert.equal(seq.current().duration, 10);
+        });
+        it('should have duration 20 for next', function () {
+            assert.equal(seq.next().duration, 20);
         });
     });
 });
