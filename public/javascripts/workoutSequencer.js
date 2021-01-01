@@ -3,6 +3,9 @@ function WorkoutSequencer(input) {
     this.currentIdx = 0;
     this.currentBlock = "";
 
+    //TODO: use one recursive method to process any type of input element
+    // probably asynchronously? And yield a promise?
+
     var processSet = function (output, blockName, set, defaultDuration) {
         var i, len = (!set || typeof set.length === 'undefined') ? 0 : set.length;
         for (i = 0; i < len; i++) {
