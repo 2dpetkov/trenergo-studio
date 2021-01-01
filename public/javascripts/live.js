@@ -19,7 +19,7 @@ const testBattery = [{
 // Debug
 const max30CardioChallenge = [{
     block: "Warm-up",
-    defaultDuration: 30,
+    duration: 30,
     set: [{
         exercise: "Chest Open Jack"
     }, {
@@ -32,7 +32,7 @@ const max30CardioChallenge = [{
     repeat: 2
 }, {
     block: "Block 1",
-    defaultDuration: 30,
+    duration: 30,
     set: [{
         exercise: "Squat kick R/L/Alt"
     }, {
@@ -43,7 +43,7 @@ const max30CardioChallenge = [{
     repeat: 3
 }, {
     block: "Block 2",
-    defaultDuration: 30,
+    duration: 30,
     set: [{
         exercise: "Med ball twist"
     }, {
@@ -54,7 +54,7 @@ const max30CardioChallenge = [{
     repeat: 3
 }, {
     block: "Block 3",
-    defaultDuration: 30,
+    duration: 30,
     set: [{
         exercise: "Plyo power knee R/L/Alt"
     }, {
@@ -65,7 +65,7 @@ const max30CardioChallenge = [{
     repeat: 3
 }, {
     block: "Block 4",
-    defaultDuration: 30,
+    duration: 30,
     set: [{
         exercise: "Slap back Jack"
     }, {
@@ -76,7 +76,7 @@ const max30CardioChallenge = [{
     repeat: 3
 }, {
     block: "Block 5",
-    defaultDuration: 30,
+    duration: 30,
     set: [{
         exercise: "Chair Squat"
     }, {

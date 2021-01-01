@@ -22,7 +22,7 @@ describe('workoutSequencer - default durations', function () {
 
     const oneBlockDefaultDuration = [{
         block: 'test block',
-        defaultDuration: 30,
+        duration: 30,
         set: [{
             exercise: 'test exercise 1'
         }, {
@@ -41,7 +41,7 @@ describe('workoutSequencer - default durations', function () {
 
     const oneBlockCustomDurations = [{
         block: 'test block',
-        defaultDuration: 30,
+        duration: 30,
         set: [{
             exercise: 'test exercise 1',
             duration: 10
@@ -61,7 +61,7 @@ describe('workoutSequencer - default durations', function () {
 
     const oneBlockOnlyCustomDurations = [{
         block: 'test block',
-        defaultDuration: 30,
+        duration: 30,
         set: [{
             exercise: 'test exercise 1',
             duration: 10

@@ -1,41 +1,50 @@
 function WorkoutSequencer(input) {
     this.sequence = [];
     this.currentIdx = 0;
-    this.currentBlock = "";
 
-    //TODO: use one recursive method to process any type of input element
-    // probably asynchronously? And yield a promise?
+    var processItem = function (output, item) {
+        if (!item || typeof item === 'undefined') {
+            return;
+        }
 
-    var processSet = function (output, blockName, set, defaultDuration) {
-        var i, len = (!set || typeof set.length === 'undefined') ? 0 : set.length;
-        for (i = 0; i < len; i++) {
-            var r;
-            for (r = typeof set[i].repeat === 'undefined' ? 1 : set[i].repeat; r > 0; r--) {
-                var exercise = set[i];
-                if (typeof exercise.duration === 'undefined') {
-                    exercise.duration = defaultDuration ? defaultDuration : null;
-                }
-                if (typeof exercise.exercise !== 'undefined' && exercise.duration !== null) {
-                    exercise.block = blockName;
-                    output.push(exercise);
+        if (Array.isArray(item)) {
+            var i;
+            for (i = 0; i < item.length; i++) {
+                processItem(output, item[i]);
+            }
+        } else if (typeof item.exercise !== 'undefined') {
+            if (typeof item.parent === 'undefined') {
+                item.parent = null;
+            }
+
+            item.block = item.parent && typeof item.parent.block !== 'undefined' ?
+                item.parent.block :
+                '';
+            if (typeof item.duration === 'undefined') {
+                item.duration = item.parent && typeof item.parent.duration !== 'undefined' ?
+                    item.parent.duration :
+                    0;
+            }
+            var repeat = typeof item.repeat !== 'undefined' ? item.repeat : 1;
+            for (repeat; repeat > 0; repeat--) {
+                output.push(item);
+            }
+        } else if (typeof item.block !== 'undefined') {
+            var repeat = typeof item.repeat === 'undefined' ? 1 : item.repeat;
+            if (typeof item.set === 'undefined') {
+                repeat = 0;
+            }
+            for (repeat; repeat > 0; repeat--) {
+                var i;
+                for (i = 0; i < item.set.length; i++) {
+                    item.set[i].parent = item;
+                    processItem(output, item.set[i]);
                 }
             }
         }
     }
 
-    var processBlock = function (output, block) {
-        var r;
-        for (r = typeof block.repeat === 'undefined' ? 1 : block.repeat; r > 0; r--) {
-            processSet(output, block.block, block.set, block.defaultDuration);
-        }
-    }
-
-    var i, len = (!input || typeof input.length === 'undefined') ? 0 : input.length;
-    for (i = 0; i < len; i++) {
-        processBlock(this.sequence, input[i]);
-    }
-
-    processSet(this.sequence, this.currentBlock, input);
+    processItem(this.sequence, input);
 }
 
 WorkoutSequencer.prototype.current = function () {
