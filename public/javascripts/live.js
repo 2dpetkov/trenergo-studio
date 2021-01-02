@@ -60,6 +60,9 @@ const max30CardioChallenge = [{
     }],
     repeat: 3
 }, {
+    exercise: "Break",
+    duration: 30
+}, {
     block: "Block 2",
     duration: 30,
     set: [{
@@ -70,6 +73,9 @@ const max30CardioChallenge = [{
         exercise: "4 Jab - 4 High knees"
     }],
     repeat: 3
+}, {
+    exercise: "Break",
+    duration: 30
 }, {
     block: "Block 3",
     duration: 30,
@@ -82,6 +88,9 @@ const max30CardioChallenge = [{
     }],
     repeat: 3
 }, {
+    exercise: "Break",
+    duration: 30
+}, {
     block: "Block 4",
     duration: 30,
     set: [{
@@ -92,6 +101,9 @@ const max30CardioChallenge = [{
         exercise: "Plank speed tap R/L/Alt"
     }],
     repeat: 3
+}, {
+    exercise: "Break",
+    duration: 30
 }, {
     block: "Block 5",
     duration: 30,
@@ -107,16 +119,16 @@ const max30CardioChallenge = [{
 
 const countdownZero = '--:--';
 
-var sequencer;
+var sequence;
 var cdt;
 
 window.onload = function () {
-    sequencer = new WorkoutSequencer(max30CardioChallenge);
+    sequence = new WorkoutSequence(max30CardioChallenge);
     cdt = new CountDownTimer();
 
-    updateSequenceDiv(sequencer.current(), sequencer.next());
+    updateSequenceDiv(sequence.current(), sequence.next());
 
-    var obj = CountDownTimer.parse(sequencer.current().duration);
+    var obj = CountDownTimer.parse(sequence.current().duration);
     var display = document.querySelector('#countdown-number');
     display.textContent = `${('0' + obj.minutes).substr(-2)}:${('0' + obj.seconds).substr(-2)}`;
 
@@ -124,8 +136,8 @@ window.onload = function () {
         if (!cdt.expired()) {
             display.textContent = `${('0' + m).substr(-2)}:${('0' + s).substr(-2)}`;
         } else {
-            var currentInterval = sequencer.current();
-            var nextInterval = sequencer.next();
+            var currentInterval = sequence.current();
+            var nextInterval = sequence.next();
 
             if (!currentInterval) {
                 display.textContent = countdownZero;
@@ -137,7 +149,7 @@ window.onload = function () {
                 cdt.restart(currentInterval.duration);
             }
 
-            sequencer.iterate();
+            sequence.iterate();
         }
     });
 }
@@ -163,5 +175,5 @@ function testButtonPrev() {
 }
 
 function testButtonNext() {
-    
+
 }

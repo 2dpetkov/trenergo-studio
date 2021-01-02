@@ -1,7 +1,7 @@
 var assert = chai.assert;
 var expect = chai.expect;
 
-describe('workoutSequencer - default durations', function () {
+describe('workoutSequence - default durations', function () {
     const oneBlockNoDefaultDuration = [{
         block: 'test block',
         set: [{
@@ -13,7 +13,7 @@ describe('workoutSequencer - default durations', function () {
         }]
     }];
     describe('One block, no default duration', function () {
-        var seq = new WorkoutSequencer(oneBlockNoDefaultDuration);
+        var seq = new WorkoutSequence(oneBlockNoDefaultDuration);
         it('should have custom durations', function () {
             assert.equal(seq.current().duration, 10);
             assert.equal(seq.next().duration, 20);
@@ -30,7 +30,7 @@ describe('workoutSequencer - default durations', function () {
         }]
     }];
     describe('One block, with default duration', function () {
-        var seq = new WorkoutSequencer(oneBlockDefaultDuration);
+        var seq = new WorkoutSequence(oneBlockDefaultDuration);
         it('should have duration 30 for current', function () {
             assert.equal(seq.current().duration, 30);
         });
@@ -50,7 +50,7 @@ describe('workoutSequencer - default durations', function () {
         }]
     }];
     describe('One block, with default duration and 1 custom durations', function () {
-        var seq = new WorkoutSequencer(oneBlockCustomDurations);
+        var seq = new WorkoutSequence(oneBlockCustomDurations);
         it('should have duration 10 for current', function () {
             assert.equal(seq.current().duration, 10);
         });
@@ -71,7 +71,7 @@ describe('workoutSequencer - default durations', function () {
         }]
     }];
     describe('One block, with default duration, and 2 custom durations', function () {
-        var seq = new WorkoutSequencer(oneBlockOnlyCustomDurations);
+        var seq = new WorkoutSequence(oneBlockOnlyCustomDurations);
         it('should have duration 10 for current', function () {
             assert.equal(seq.current().duration, 10);
         });

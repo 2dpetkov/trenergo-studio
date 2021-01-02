@@ -1,13 +1,13 @@
 var assert = chai.assert;
 var expect = chai.expect;
 
-describe('workoutSequencer - blocks and repeats', function () {
+describe('workoutSequence - blocks and repeats', function () {
     const oneBlockEmptySetNoRepeats = [{
         block: 'empty block',
         set: []
     }];
     describe('One block, no exercises, no repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockEmptySetNoRepeats);
+        var seq = new WorkoutSequence(oneBlockEmptySetNoRepeats);
         it('should be an empty set of exercises', function () {
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
@@ -20,7 +20,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         repeat: 2
     }];
     describe('One block, no exercises, two repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockEmptySetTwoRepeats);
+        var seq = new WorkoutSequence(oneBlockEmptySetTwoRepeats);
         it('should be an empty set of exercises', function () {
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
@@ -38,7 +38,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         }]
     }];
     describe('One block, two exercises, no repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockTwoExercisesNoRepeats);
+        var seq = new WorkoutSequence(oneBlockTwoExercisesNoRepeats);
         it('should have valid current and next', function () {
             assert.equal(seq.current().exercise, 'test exercise 1');
             assert.equal(seq.current().block, 'test block');
@@ -60,7 +60,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         }]
     }];
     describe('One block, two exercises, no repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockTwoExercisesExRepeats);
+        var seq = new WorkoutSequence(oneBlockTwoExercisesExRepeats);
         it('should have valid current and next', function () {
             assert.equal(seq.current().exercise, 'test exercise 1');
             assert.equal(seq.current().block, 'test block');
@@ -115,7 +115,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         repeat: 0
     }];
     describe('One block, one exercises, zero repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockOneExerciseZeroRepeats);
+        var seq = new WorkoutSequence(oneBlockOneExerciseZeroRepeats);
         it('should be an empty set of exercises', function () {
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
@@ -131,7 +131,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         repeat: -2
     }];
     describe('One block, one exercises, negative repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockOneExerciseNegativeRepeats);
+        var seq = new WorkoutSequence(oneBlockOneExerciseNegativeRepeats);
         it('should be an empty set of exercises', function () {
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
@@ -147,7 +147,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         repeat: 1
     }];
     describe('One block, one exercises, one repeat', function () {
-        var seq = new WorkoutSequencer(oneBlockOneExerciseOneRepeat);
+        var seq = new WorkoutSequence(oneBlockOneExerciseOneRepeat);
         it('should be at the end of the sequence', function () {
             assert.equal(seq.current().exercise, 'test exercise 1');
             assert.equal(seq.current().block, 'test block');
@@ -170,7 +170,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         repeat: 2
     }];
     describe('One block, one exercises, two repeats', function () {
-        var seq = new WorkoutSequencer(oneBlockOneExerciseTwoRepeats);
+        var seq = new WorkoutSequence(oneBlockOneExerciseTwoRepeats);
         it('should have valid current and next', function () {
             assert.equal(seq.current().exercise, 'test exercise 1');
             assert.equal(seq.current().block, 'test block');
@@ -218,7 +218,7 @@ describe('workoutSequencer - blocks and repeats', function () {
         repeat: 2
     }];
     describe('Full exercise battery', function () {
-        var seq = new WorkoutSequencer(fullExerciseBattery);
+        var seq = new WorkoutSequence(fullExerciseBattery);
         it('should be on block 1, repeat 1/2, exercise 1-1, repeat 1/2', function () {
             assert.equal(seq.current().exercise, 'test exercise 1-1');
             assert.equal(seq.current().block, 'test block 1');

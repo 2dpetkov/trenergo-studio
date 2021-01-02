@@ -1,7 +1,7 @@
 var assert = chai.assert;
 var expect = chai.expect;
 
-describe('workoutSequencer - single level, no repeats', function () {
+describe('workoutSequence - single level, no repeats', function () {
     const emptySet = [];
     const oneExercise = [{
         exercise: 'test exercise',
@@ -26,17 +26,17 @@ describe('workoutSequencer - single level, no repeats', function () {
     }];
 
     describe('#current()', function () {
-        var nullSeq = new WorkoutSequencer();
+        var nullSeq = new WorkoutSequence();
         it('should return null on null sequence', function () {
             expect(nullSeq.current()).to.be.null;
         });
 
-        var emptySeq = new WorkoutSequencer(emptySet);
+        var emptySeq = new WorkoutSequence(emptySet);
         it('should return null on empty sequence', function () {
             expect(emptySeq.current()).to.be.null;
         });
 
-        var oneExerciseSeq = new WorkoutSequencer(oneExercise);
+        var oneExerciseSeq = new WorkoutSequence(oneExercise);
         it('should return valud exercise, duration and empty block', function () {
             assert.equal(oneExerciseSeq.current().exercise, 'test exercise');
             assert.equal(oneExerciseSeq.current().block, '');
@@ -45,22 +45,22 @@ describe('workoutSequencer - single level, no repeats', function () {
     });
 
     describe('#next()', function () {
-        var nullSeq = new WorkoutSequencer();
+        var nullSeq = new WorkoutSequence();
         it('should return null on null sequence', function () {
             expect(nullSeq.next()).to.be.null;
         });
 
-        var emptySeq = new WorkoutSequencer(emptySet);
+        var emptySeq = new WorkoutSequence(emptySet);
         it('should return null on empty sequence', function () {
             expect(emptySeq.next()).to.be.null;
         });
 
-        var oneExerciseSeq = new WorkoutSequencer(oneExercise);
+        var oneExerciseSeq = new WorkoutSequence(oneExercise);
         it('should return null on one-exercise sequence', function () {
             expect(oneExerciseSeq.next()).to.be.null;
         });
 
-        var twoExercisesSeq = new WorkoutSequencer(twoExercises);
+        var twoExercisesSeq = new WorkoutSequence(twoExercises);
         it('should return valid next', function () {
             assert.equal(twoExercisesSeq.next().exercise, 'test exercise 2')
             assert.equal(twoExercisesSeq.next().duration, 7);
@@ -68,7 +68,7 @@ describe('workoutSequencer - single level, no repeats', function () {
     });
 
     describe('#iterate()', function () {
-        var threeExercisesSeq = new WorkoutSequencer(threeExercises);
+        var threeExercisesSeq = new WorkoutSequence(threeExercises);
         it('should be at the beginning of the sequence', function () {
             assert.equal(threeExercisesSeq.current().exercise, 'test exercise 1');
             assert.equal(threeExercisesSeq.current().block, '');
@@ -102,14 +102,14 @@ describe('workoutSequencer - single level, no repeats', function () {
     });
 });
 
-describe('workoutSequencer - single level, repeats', function () {
+describe('workoutSequence - single level, repeats', function () {
     const oneExerciseZeroRepeats = [{
         exercise: 'test exercise 1',
         duration: 10,
         repeat: 0
     }];
     describe('One exercise, zero repeats', function () {
-        var seq = new WorkoutSequencer(oneExerciseZeroRepeats);
+        var seq = new WorkoutSequence(oneExerciseZeroRepeats);
         it('should not run single exercise with zero repeats', function () {
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
@@ -122,7 +122,7 @@ describe('workoutSequencer - single level, repeats', function () {
         repeat: 1
     }];
     describe('One exercise, one repeat', function () {
-        var seq = new WorkoutSequencer(oneExerciseOneRepeat);
+        var seq = new WorkoutSequence(oneExerciseOneRepeat);
         it('should have one valid interval', function () {
             assert.equal(seq.current().exercise, 'test exercise 1');
             expect(seq.next()).to.be.null;
@@ -141,7 +141,7 @@ describe('workoutSequencer - single level, repeats', function () {
         repeat: 3
     }];
     describe('One exercise, three repeats', function () {
-        var seq = new WorkoutSequencer(oneExerciseThreeRepeats);
+        var seq = new WorkoutSequence(oneExerciseThreeRepeats);
         it('should have current and next', function () {
             assert.equal(seq.current().exercise, 'test exercise 1');
             assert.equal(seq.next().exercise, 'test exercise 1');
@@ -172,7 +172,7 @@ describe('workoutSequencer - single level, repeats', function () {
         repeat: -1
     }];
     describe('One exercise, negative repeats', function () {
-        var seq = new WorkoutSequencer(oneExerciseNegativeRepeats);
+        var seq = new WorkoutSequence(oneExerciseNegativeRepeats);
         it('should not run single exercise with negative repeats', function () {
             expect(seq.current()).to.be.null;
             expect(seq.next()).to.be.null;
@@ -193,7 +193,7 @@ describe('workoutSequencer - single level, repeats', function () {
         repeat: 2
     }];
     describe('Three exercises, two repeats', function () {
-        var seq = new WorkoutSequencer(threeExercisesTwoRepeats);
+        var seq = new WorkoutSequence(threeExercisesTwoRepeats);
         it('should be between exercises 1 and 2', function () {
             seq.iterate();
             assert.equal(seq.current().exercise, 'test exercise 1');

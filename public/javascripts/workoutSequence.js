@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-function WorkoutSequencer(input) {
+function WorkoutSequence(input) {
     this.sequence = [];
     this.currentIdx = 0;
 
@@ -65,14 +65,14 @@ function WorkoutSequencer(input) {
     processItem(this.sequence, input);
 }
 
-WorkoutSequencer.prototype.current = function () {
+WorkoutSequence.prototype.current = function () {
     return this.currentIdx >= this.sequence.length ? null : this.sequence[this.currentIdx];
 }
 
-WorkoutSequencer.prototype.next = function () {
+WorkoutSequence.prototype.next = function () {
     return this.currentIdx >= this.sequence.length - 1 ? null : this.sequence[this.currentIdx + 1];
 }
 
-WorkoutSequencer.prototype.iterate = function () {
+WorkoutSequence.prototype.iterate = function () {
     this.currentIdx++;
 }

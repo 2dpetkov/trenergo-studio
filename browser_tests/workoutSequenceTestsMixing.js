@@ -1,7 +1,7 @@
 var assert = chai.assert;
 var expect = chai.expect;
 
-describe('workoutSequencer - mixing blocks, sets, separate exercises', function () {
+describe('workoutSequence - mixing blocks, sets, separate exercises', function () {
     const oneBlockOneExerciseAndPause = [{
         block: 'block 1',
         set: [{
@@ -12,7 +12,7 @@ describe('workoutSequencer - mixing blocks, sets, separate exercises', function 
         exercise: "break", duration: 10
     }];
     describe('One block, one exercise and a pause', function () {
-        var seq = new WorkoutSequencer(oneBlockOneExerciseAndPause);
+        var seq = new WorkoutSequence(oneBlockOneExerciseAndPause);
         it('should be "exercise 1" for current', function () {
             assert.equal(seq.current().exercise, 'exercise 1');
             assert.equal(seq.current().block, 'block 1');
