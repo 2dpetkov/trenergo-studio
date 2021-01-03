@@ -10,4 +10,4 @@ npm test
 ### browser tests
 The Mocha/Chai frontend tests should be placed in *./browser_tests*.
 
-Run by opening *./browser.tests.html* in a web browser.
+Run by opening *./browser_tests/index.html* in a web browser.
