@@ -11,18 +11,16 @@
     <script>mocha.setup('bdd')</script>
 
     <!-- load code you want to test here -->
+    <script src="../public/javascripts/workoutSequence.js"></script>
+    <script src="../public/javascripts/countDownTimer.js"></script>
 
     <!-- load your test files here -->
-
-    <script src="../public/javascripts/countDownTimer.js"></script>
-    <script src="./countDownTimerTests.js"></script>
-
-
-    <script src="../public/javascripts/workoutSequence.js"></script>
     <script src="./workoutSequenceTestsSingleLevel.js"></script>
     <script src="./workoutSequenceTestsDefaultDurations.js"></script>
     <script src="./workoutSequenceTestsBlocks.js"></script>
     <script src="./workoutSequenceTestsMixing.js"></script>
+
+    <script src="./countDownTimerTests.js"></script>
 
     <script>
       mocha.run();
