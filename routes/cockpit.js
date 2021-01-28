@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('green-screen', { title: 'TRENERGO™ Green Screen' });
+  res.render('cockpit', { title: 'TRENERGO™ Cockpit®' });
 });
 
 module.exports = router;
