@@ -119,16 +119,10 @@ const max30CardioChallenge = [{
 
 const countdownZero = '--:--';
 
-var socket;
 var sequence;
 var cdt;
 
 window.onload = function () {
-    socket = io();
-    socket.on('command', (cmd) => {
-        console.log(cmd);
-    });
-
     sequence = new WorkoutSequence(max30CardioChallenge);
     cdt = new CountDownTimer();
 
@@ -171,3 +165,18 @@ function resetCircleAnimation(seconds) {
     countdownCircleEl.parentNode.replaceChild(clone, countdownCircleEl);
     clone.style.animation = 'countdown ' + seconds + 's linear infinite forwards';
 }
+
+var socket = io();
+socket.on('command', (cmd) => {
+    switch (cmd) {
+        case 'go':
+            cdt.start();
+            break;
+        case 'previous':
+            break;
+        case 'next':
+            break;
+        default:
+            console.error('Unknown command', cmd);
+    }
+});

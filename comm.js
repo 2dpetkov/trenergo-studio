@@ -21,14 +21,13 @@ module.exports = function (io) {
         var userId = 'test123#user-id';
 
         socket.join(userId);
-        console.log('socket added to room', userId);
+        console.log('socket added to', userId);
 
         socket.on('disconnect', () => {
-            console.log('socket exiting', userId);
+            console.log('socket disconnected from', userId);
         })
 
         socket.on('command', (cmd) => {
-            console.log('command received:', cmd);
             socket.to(userId).emit('command', cmd);
         })
     });
