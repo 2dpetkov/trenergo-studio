@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 
+var index = require('./routes/index');
 var greenScreenRouter = require('./routes/green-screen');
 var cockpitRouter = require('./routes/cockpit');
 var usersRouter = require('./routes/users');
@@ -21,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', cockpitRouter);
+app.use('/', index);
 app.use('/cockpit', cockpitRouter);
 app.use('/green-screen', greenScreenRouter);
 app.use('/users', usersRouter);

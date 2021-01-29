@@ -1,0 +1,30 @@
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #333;
+}
+
+.app-list {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 30%
+}
+
+.app-item {
+    width: 120px;
+    height: 120px;
+    display: block;
+    position: relative;
+    margin: 0 0 0 0.5em;
+}
+
+.app-item img {
+    width: 100%;
+}
+
+.app-item img:hover {
+    opacity: 0.5;
+  }
