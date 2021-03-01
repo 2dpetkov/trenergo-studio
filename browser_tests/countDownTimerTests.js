@@ -41,6 +41,17 @@ describe('countDownTimer', function () {
     });
 
     describe('#start', function () {
+        it('should expire immediately if started for 0 seconds', function (done) {
+            var cdt = new CountDownTimer();
+            cdt.start(0);
+            setTimeout(() => {
+                if (cdt.expired()) {
+                    done();
+                } else {
+                    done('should have expired immediately');
+                }
+            }, 100);
+        });
         it('should have expired after 1.1 seconds', function (done) {
             var cdt = new CountDownTimer();
             cdt.start(1);
@@ -62,6 +73,18 @@ describe('countDownTimer', function () {
                     done('expired');
                 }
             }, 900);
+        });
+        it('should ignore second start', function (done) {
+            var cdt = new CountDownTimer();
+            cdt.start(1);
+            cdt.start(0);
+            setTimeout(() => {
+                if (!cdt.expired()) {
+                    done();
+                } else {
+                    done('should not have been reset');
+                }
+            }, 100);
         });
     });
 
