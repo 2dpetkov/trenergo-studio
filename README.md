@@ -1,5 +1,16 @@
 ## Running the tests
 
+### running with Docker Compose
+To build
+```
+docker-compose build
+```
+
+Then run
+```
+docker-compose up
+```
+
 ### node.js tests
 The Mocha/Chai backend tests should be placed in *./test*
 
